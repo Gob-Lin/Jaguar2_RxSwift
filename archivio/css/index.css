@@ -1,0 +1,230 @@
+html, body, .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1194px;
+    height: 834px;
+    overflow: hidden;
+}
+body {
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+    width: max-content;
+    transform: translateX(0);
+    transition-property: transform;
+    transition-duration: 0.5s;
+}
+.sliding .wrapper {
+    transition-duration: 0s;
+}
+.slide {
+    position: relative;
+    width: 1194px;
+    height: 834px;
+    background-size: 1194px 834px;
+    background-repeat: no-repeat;
+}
+.slide:nth-child(1) {
+    background-image: url(../img/slides/01.jpg);
+}
+.slide:nth-child(2) {
+    background-image: url(../img/slides/02.jpg);
+}
+.slide:nth-child(3) {
+    background-image: url(../img/slides/03.jpg);
+}
+.slide:nth-child(4) {
+    background-image: url(../img/slides/04.jpg);
+}
+.slide:nth-child(5) {
+    background-image: url(../img/slides/05.jpg);
+}
+.slide:nth-child(6) {
+    background-image: url(../img/slides/06.jpg);
+}
+.slide:nth-child(7) {
+    background-image: url(../img/slides/07.jpg);
+}
+.slide:nth-child(8) {
+    background-image: url(../img/slides/08.jpg);
+}
+.slide:nth-child(9) {
+    background-image: url(../img/slides/09.jpg);
+}
+.slide:nth-child(10) {
+    background-image: url(../img/slides/10.jpg);
+}
+.slide:nth-child(11) {
+    background-image: url(../img/slides/11.jpg);
+}
+.button {
+    position: absolute;
+    -webkit-tap-highlight-color: transparent;
+}
+.pdf[data-pdf="0"], .link[data-link="1"] {
+    top: 40px;
+    left: 898px;
+    width: 66px;
+    height: 66px;
+}
+.link[data-link="2"] {
+    top: 40px;
+    left: 993px;
+    width: 66px;
+    height: 66px;
+}
+.link[data-link="11"], .slide:nth-child(11) .link[data-link="1"] {
+    top: 40px;
+    left: 1087px;
+    width: 66px;
+    height: 66px;
+}
+.open-popup[data-popup="1"] {
+    top: 445px;
+    left: 901px;
+    width: 52px;
+    height: 52px;
+}
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    width: 1194px;
+    height: 834px;
+    opacity: 0;
+    background-size: 1194px 834px;
+    background-repeat: no-repeat;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+}
+.popup.active {
+    z-index: auto;
+    opacity: 1;
+}
+.popup[data-popup="1"] {
+    background-image: url(../img/popups/1.jpg);
+}
+.close-popup[data-popup="1"] {
+    top: 57px;
+    left: 1100px;
+    width: 36px;
+    height: 36px;
+}
+.pdf[data-pdf="1"] {
+    top: 195px;
+    left: 65px;
+    width: 1065px;
+    height: 15px;
+}
+.pdf[data-pdf="2"] {
+    top: 220px;
+    left: 65px;
+    width: 1065px;
+    height: 15px;
+}
+.pdf[data-pdf="3"] {
+    top: 245px;
+    left: 65px;
+    width: 1065px;
+    height: 35px;
+}
+.pdf[data-pdf="4"] {
+    top: 290px;
+    left: 65px;
+    width: 1065px;
+    height: 35px;
+}
+.pdf[data-pdf="5"] {
+    top: 338px;
+    left: 65px;
+    width: 1065px;
+    height: 15px;
+}
+.pdf[data-pdf="6"] {
+    top: 360px;
+    left: 65px;
+    width: 1065px;
+    height: 15px;
+}
+.pdf[data-pdf="7"] {
+    top: 390px;
+    left: 65px;
+    width: 1065px;
+    height: 35px;
+}
+.pdf[data-pdf="8"] {
+    top: 435px;
+    left: 65px;
+    width: 1065px;
+    height: 35px;
+}
+.pdf[data-pdf="9"] {
+    top: 480px;
+    left: 65px;
+    width: 1065px;
+    height: 35px;
+}
+.pdf[data-pdf="10"] {
+    top: 525px;
+    left: 65px;
+    width: 1065px;
+    height: 15px;
+}
+.thumbnail[data-link="3"] {
+    top: 213px;
+    left: 65px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-link="4"] {
+    top: 213px;
+    left: 221px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-link="5"] {
+    top: 213px;
+    left: 376px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-link="6"] {
+    top: 430px;
+    left: 376px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-link="7"] {
+    top: 430px;
+    left: 533px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-link="8"] {
+    top: 430px;
+    left: 687px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-link="9"] {
+    top: 430px;
+    left: 844px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-link="10"] {
+    top: 430px;
+    left: 999px;
+    width: 147px;
+    height: 103px;
+}
+.thumbnail[data-popup="1"] {
+    top: 575px;
+    left: 376px;
+    width: 147px;
+    height: 103px;
+}
