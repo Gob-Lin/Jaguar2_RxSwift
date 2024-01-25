@@ -5,14 +5,13 @@
 //  Created by Paolo Piccini on 25/03/23.
 //
 
+import PDFKit
+import RxCocoa
+import RxSwift
 import UIKit
 import WebKit
-import PDFKit
-import RxSwift
-import RxCocoa
 
 class MainViewController: UIViewController {
-  
   var viewModel = MainViewModel()
 
   private lazy var webView: WKWebView = {
@@ -21,6 +20,7 @@ class MainViewController: UIViewController {
     view.scrollView.isScrollEnabled = false
     view.scrollView.bounces = false
     view.navigationDelegate = self
+    view.scrollView.delegate = self
     return view
   }()
 
@@ -61,7 +61,6 @@ class MainViewController: UIViewController {
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
-
       pdfView.topAnchor.constraint(equalTo: view.topAnchor),
       pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       pdfView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -78,7 +77,6 @@ class MainViewController: UIViewController {
   }
 
   private func setupBindings() {
-
     closeButton.rx.tap
       .subscribe(onNext: { [unowned self] _ in
         view.sendSubviewToBack(pdfView)
@@ -102,13 +100,11 @@ class MainViewController: UIViewController {
       })
       .disposed(by: viewModel.bag)
   }
-
 }
 
+// swiftlint:disable line_length
 extension MainViewController: WKNavigationDelegate {
-
   public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-
     defer {
       decisionHandler(.allow)
     }
@@ -117,18 +113,23 @@ extension MainViewController: WKNavigationDelegate {
 
     let myCustomProtocol = url.absoluteString.components(separatedBy: "://").first
 
-    if (myCustomProtocol == "pdf") {
+    if myCustomProtocol == "pdf" {
       let myPDF = url.absoluteString.components(separatedBy: "//")[1]
       let documentToDisplay = ContentModel(id: myPDF, icon: "", type: "pdf")
 
       guard let filePath = Bundle.main.path(forResource: "archivio/contents/" + documentToDisplay.id, ofType: documentToDisplay.type) else { return }
       let fileURL = URL(fileURLWithPath: filePath)
       viewModel.pdfRequestSubject.onNext(URLRequest(url: fileURL))
-
-    } else if (myCustomProtocol == "reloadexternalcontents") {
-      let myXMLName:String = (url.absoluteString.components(separatedBy: "//")[1])
+    } else if myCustomProtocol == "reloadexternalcontents" {
+      let myXMLName: String = url.absoluteString.components(separatedBy: "//")[1]
       viewModel.loadExternalContents(myXMLName)
     }
   }
+  // swiftlint:enable line_length
+}
 
+extension MainViewController: UIScrollViewDelegate {
+  func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    scrollView.pinchGestureRecognizer?.isEnabled = false
+  }
 }

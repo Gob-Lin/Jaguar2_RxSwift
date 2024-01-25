@@ -5,11 +5,12 @@
 //  Created by Paolo Piccini on 25/03/23.
 //
 
+// swiftlint:disable line_length
+
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -33,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
   }
-
-
 }
 
+// swiftlint:enable line_length

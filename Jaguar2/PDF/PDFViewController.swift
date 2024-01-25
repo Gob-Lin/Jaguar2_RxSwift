@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import RxSwift
 import PDFKit
+import RxSwift
 
 class PDFViewController: UIViewController {
-
   let bag = DisposeBag()
   let documentSubject = PublishSubject<PDFDocument?>()
 
@@ -41,7 +40,6 @@ class PDFViewController: UIViewController {
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
-
       pdfView.topAnchor.constraint(equalTo: view.topAnchor),
       pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       pdfView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -49,12 +47,10 @@ class PDFViewController: UIViewController {
 
       closeButton.topAnchor.constraint(equalTo: pdfView.topAnchor, constant: 20),
       pdfView.trailingAnchor.constraint(equalTo: closeButton.trailingAnchor, constant: 20)
-
     ])
   }
 
   private func setupBindings() {
-
     closeButton.rx.tap
       .subscribe(onNext: { [unowned self] _ in
         self.dismiss(animated: true)
@@ -66,7 +62,5 @@ class PDFViewController: UIViewController {
       .drive(onNext: { [unowned self] pdfDocument in
         pdfView.document = pdfDocument
       }).disposed(by: bag)
-
   }
-
 }
