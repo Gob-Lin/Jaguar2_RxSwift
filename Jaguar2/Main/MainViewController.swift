@@ -14,13 +14,18 @@ import WebKit
 class MainViewController: UIViewController {
   var viewModel = MainViewModel()
 
+  var wkWebViewConfiguration: WKWebViewConfiguration {
+    let configuration = WKWebViewConfiguration()
+    configuration.ignoresViewportScaleLimits = true
+    return configuration
+  }
+
   private lazy var webView: WKWebView = {
-    let view = WKWebView()
+    let view = WKWebView(frame: .zero, configuration: wkWebViewConfiguration)
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.scrollView.isScrollEnabled = false
+    view.scrollView.isScrollEnabled = true
     view.scrollView.bounces = false
     view.navigationDelegate = self
-    view.scrollView.delegate = self
     return view
   }()
 
@@ -126,10 +131,4 @@ extension MainViewController: WKNavigationDelegate {
     }
   }
   // swiftlint:enable line_length
-}
-
-extension MainViewController: UIScrollViewDelegate {
-  func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-    scrollView.pinchGestureRecognizer?.isEnabled = false
-  }
 }
